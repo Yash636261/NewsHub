@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>React Top News Headlines</title>
   </head>
   <body>
     <h1>React Top News Headlines</h1>

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import Subnews from './Subnews';
-
-export class NewsSec extends Component {
-  articles= [
+{
+  "status": "ok",
+  "totalResults": 3,
+  "articles": [
     {
       "source": { "id": "abc-news-au", "name": "ABC News (AU)" },
       "author": "Adam Langenberg",
@@ -34,31 +33,5 @@ export class NewsSec extends Component {
       "content": "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]"
     }
   ]
-  constructor{
-    super();
-    this.state{
-      articles=this.articles,
-      loading: false
-    }
-  }
-  render() {
-    return (
-      <div className="container my-3">
-        <h2>this is the news section</h2>
-        <div className="row">
-            <div className="col-md-3">
-              <Subnews title="passedtitle" description="passeddesc" imageurl="" newsurl="pending"/>
-            </div>
-            <div className="col-md-3">
-              <Subnews title="passedtitle" description="passeddesc" imageurl=""/>
-            </div>
-            <div className="col-md-3">
-              <Subnews title="passedtitle" description="passeddesc" imageurl=""/>
-            </div>
-        </div>
-      </div>
-    )
-  }
 }
-
-export default NewsSec
+k

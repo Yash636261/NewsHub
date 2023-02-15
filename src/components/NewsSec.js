@@ -34,10 +34,11 @@ export class NewsSec extends Component {
       "content": "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]"
     }
   ]
-  constructor{
+  constructor()
+  {
     super();
-    this.state{
-      articles=this.articles,
+    this.state={
+      articles: this.articles,
       loading: false
     }
   }
@@ -46,15 +47,12 @@ export class NewsSec extends Component {
       <div className="container my-3">
         <h2>this is the news section</h2>
         <div className="row">
-            <div className="col-md-3">
-              <Subnews title="passedtitle" description="passeddesc" imageurl="" newsurl="pending"/>
-            </div>
-            <div className="col-md-3">
-              <Subnews title="passedtitle" description="passeddesc" imageurl=""/>
-            </div>
-            <div className="col-md-3">
-              <Subnews title="passedtitle" description="passeddesc" imageurl=""/>
-            </div>
+          {this.state.articles.map((element)=>{
+            return <div className="col-md-4"key={element.url} >
+                      <Subnews title={element.title.slice(0,88)} description={element.description} imageurl={element.urlToImage} newsurl={element.url}/>
+                    </div>
+          })
+          }
         </div>
       </div>
     )

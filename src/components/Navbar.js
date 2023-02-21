@@ -13,18 +13,17 @@ export class navbar extends Component {
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <ul className="navbar-nav">
                 <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/general"/>Home
+                <Link className="nav-link active" aria-current="page" to="/general">Home</Link>
                 </li>
-                <li className="nav-item-my-2"><Link className="nav-link active" aria-current="page" to="/entertainment"/>entertainment  </li>
-                <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/general"/>general  </li>
-                <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/health"/>health  </li>
-                <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/science"/>science  </li>
-                <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/sports"/>sports  </li>
-                <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/technology"/>technology  </li>
-                
-            </ul>
+                <li className="nav-item"><Link className="nav-link"  to="/entertainment">Entertainment</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/general">General</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/health">Health</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/science">Science</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/sports">Sports</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/technology">Technology</Link></li>
+              </ul>
             </div>
         </div>
         </nav>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Subnews from './Subnews';
 import PropTypes from 'prop-types';
 
-export class NewsSec extends Component {
+export class NewsSec extends Component{
 
   static defaultProps = {
     country: 'in',
@@ -24,39 +24,27 @@ export class NewsSec extends Component {
       page: 1
     }
   }
+  async updateNews(){
+    const url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+      let data = await fetch(url);
+      let parsedData = await data.json()
+      this.setState({
+        articles: parsedData.articles,
+        totalResults: parsedData.totalResults
+      })
+  }
 
-  async componentDidMount(){
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=1&pageSize=${this.props.pageSize}`;
-    let data = await fetch(url);
-    let parsedData = await data.json()
-    console.log(parsedData);
-    this.setState({articles: parsedData.articles, totalResults: parsedData.totalResults})
+  componentDidMount= ()=>{
+    this.updateNews()
   }
 
   handlenext= async () =>{
-
-    if(! this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pageSize)){
-      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
-      let data = await fetch(url);
-      let parsedData = await data.json()
-  
-      this.setState({
-        page: this.state.page + 1,
-        articles: parsedData.articles
-      })
-    }
+    this.setState({page: this.state.page+1})
+    this.updateNews()
   }
   handleprev= async ()=>{
-
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
-    let data = await fetch(url);
-    let parsedData = await data.json()
-
-    this.setState({
-      page: this.state.page - 1,
-      articles: parsedData.articles
-    })
-
+    this.setState({page: this.state.page - 1})
+    this.updateNews()
   }
 
   render() {
@@ -79,5 +67,4 @@ export class NewsSec extends Component {
     )
   }
 }
-
 export default NewsSec

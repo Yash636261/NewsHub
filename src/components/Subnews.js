@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class Subnews extends Component {
-
-  render() {
-    let {title,description, imageurl,newsurl} = this.props;
+const Subnews =(props)=>{
+    let {title,description, imageurl,newsurl} = props;
     return (
       <div className="my-3">
         <div className="card">
@@ -16,7 +14,6 @@ export class Subnews extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default Subnews

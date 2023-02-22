@@ -1,70 +1,77 @@
-import React, { Component } from 'react';
-import Subnews from './Subnews';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState} from "react";
+import Subnews from "./Subnews";
+import PropTypes from "prop-types";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-export class NewsSec extends Component{
+const NewsSec = (props)=> {
+  
+  const [articles, setArticles] = useState([]);
+  //const {loading, setLoading} = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(1);
 
-  static defaultProps = {
-    country: 'in',
-    pageSize: 6,
-    category: 'general'
-  }
-  static propTypes = {
-    country: PropTypes.string,
-    pageSize: PropTypes.number,
-    category: PropTypes.string
-  }
-
-  constructor()
-  {
-    super();
-    this.state={
-      articles: [],
-      loading: false,
-      page: 1
-    }
-  }
-  async updateNews(){
-    const url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
-      let data = await fetch(url);
-      let parsedData = await data.json()
-      this.setState({
-        articles: parsedData.articles,
-        totalResults: parsedData.totalResults
-      })
+  const updateNews= async ()=> {
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${page}&pageSize=${props.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    setArticles(parsedData.articles)
+    setTotalResults(parsedData.TotalResults)
   }
 
-  componentDidMount= ()=>{
-    this.updateNews()
-  }
+  useEffect(()=>{
+    updateNews();
+  },[])
 
-  handlenext= async () =>{
-    this.setState({page: this.state.page+1})
-    this.updateNews()
-  }
-  handleprev= async ()=>{
-    this.setState({page: this.state.page - 1})
-    this.updateNews()
-  }
+  const fetchMore = async () => {
+    setPage(page+1)
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${page +1}&pageSize=${props.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    setArticles(articles.concat(parsedData.articles))
+    setTotalResults(parsedData.totalResults)
+  };
 
-  render() {
     return (
-      <div className="container my-3">
-        <h1 className="text-center">this is the news section</h1>
-        <div className="row">
-          {this.state.articles.map((element)=>{
-            return <div className="col-md-4"key={element.url} >
-                      <Subnews title={element.title} description={element.description} imageurl={element.urlToImage} newsurl={element.url}/>
-                    </div>
-          })
-          }
-        </div>
-        <div className="container d-flex justify-content-between">
-          <button disabled={this.state.page<1} type="button" className="btn btn-dark" onClick={this.handleprev}>&larr; previous</button>
-          <button disabled={this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handlenext}>next &rarr;</button>
-        </div>
+      <>      
+        <div className="container my-3">
+        <h1 className="text-center" style={{ marginTop:'90px' }}>latest from {props.category}</h1>
+        <InfiniteScroll
+          dataLength={articles.length}
+          next={fetchMore}
+          hasMore={articles.length !== totalResults}
+        >
+          <div className="container">
+            <div className="row">
+              {articles.map((element) => {
+                return (
+                  <div className="col-md-4" key={element.url}>
+                    <Subnews
+                      title={element.title}
+                      description={element.description}
+                      imageurl={element.urlToImage}
+                      newsurl={element.url}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </InfiniteScroll>
       </div>
+      </>
     )
-  }
 }
-export default NewsSec
+
+
+NewsSec.defaultProps = {
+  country: "in",
+  pageSize: 6,
+  category: "general",
+};
+NewsSec.propTypes = {
+  country: PropTypes.string,
+  pageSize: PropTypes.number,
+  category: PropTypes.string,
+};
+
+export default NewsSec;

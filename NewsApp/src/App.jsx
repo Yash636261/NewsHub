@@ -1,4 +1,3 @@
-import './App.css';
 
 import React from 'react'
 import Navbar from './components/Navbar';
@@ -12,7 +11,7 @@ import {
 const App =()=>{
     return (
       <Router basename="/">
-        <div>
+        <div className='px-[5%] py-5'>
           <Navbar/>
           <Routes>
             <Route exact path="/" element={<NewsSec key="genera" pageSize={6} country="in" category="general" CategoryImage="https://lh3.ggpht.com/MMoPETUaDbUB1bO3KAi3cKQ_lzssju3VEp9ZPauGIamgSniMr4nV2SVkVvG-rKUJSLQJP84q7EA=s56-rw-p"/>}></Route>

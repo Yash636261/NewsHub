@@ -33,32 +33,33 @@ const NewsSec = (props)=> {
 
     return (
       <>      
-        <div className="my-3 ">
-          <div className="flex flex-row mt-14">
-            <img className="bg-blue-800 w-14 h-14 rounded-full" src={props.CategoryImage} alt="" />
-            <h1 className="text-left font-bold text-2xl ml-5 my-auto capitalize">{props.category}</h1>
-          </div>
+        <div className="my-3">
         <InfiniteScroll
           dataLength={articles.length}
           next={fetchMore}
           hasMore={articles.length !== totalResults}
         >
-          <div className="container">
-            <div className="w-full">
-              {articles.map((element) => {
-                return (
-                  <div className="flex justify-center" key={element.url}>
-                    <Subnews
-                      title={element.title}
-                      description={element.description}
-                      imageurl={element.urlToImage}
-                      newsurl={element.url}
-                    />
-                  </div>
-                );
-              })}
-            </div>
+            <div className="m-auto max-w-3xl ">
+              
+          <div className="flex flex-row mt-14">
+            <img className="bg-blue-800 w-14 h-14 rounded-full" src={props.CategoryImage} alt="" />
+            <h1 className="text-left font-bold text-2xl ml-5 my-auto capitalize">{props.category}</h1>
           </div>
+          <div className="border mt-10 rounded-lg bg-gray-800">
+            {articles.map((element) => {
+              return (
+                <div className="flex justify-center" key={element.url}>
+                  <Subnews
+                    title={element.title}
+                    description={element.description}
+                    imageurl={element.urlToImage}
+                    newsurl={element.url}
+                  />
+                </div>
+              );
+            })}
+          </div>
+            </div>
         </InfiniteScroll>
       </div>
       </>

@@ -7,6 +7,7 @@ const NewsSec = (props)=> {
   
   const [articles, setArticles] = useState([]);
   //const {loading, setLoading} = useState(false);
+  const [weather , setWeather] = useState({});
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(1);
 
@@ -20,7 +21,20 @@ const NewsSec = (props)=> {
 
   useEffect(()=>{
     updateNews();
+    fetchWeather();
   },[])
+
+  const fetchWeather = async () =>{
+    const url ='https://api.weatherapi.com/v1/current.json?key=c02fc0d7552741539dc150216232706&q=vadodara&aqi=no'
+    try{
+      let weatherdata = await fetch(url);
+      let gotdata = await weatherdata.json();
+      setWeather(gotdata);
+    }
+    catch(error){
+      console.error("error",error);
+    }
+  }
 
   const fetchMore = async () => {
     // setPage(page+1)
@@ -43,7 +57,10 @@ const NewsSec = (props)=> {
               
           <div className="flex flex-row mt-14">
             <img className="bg-blue-800 w-14 h-14 rounded-full" src={props.CategoryImage} alt="" />
-            <h1 className="text-left font-bold text-2xl ml-5 my-auto capitalize">{props.category}</h1>
+            <h1 className="text-left font-medium text-2xl ml-5 my-auto capitalize">{props.category}</h1>
+              {props.ishome==='yes' && weather.current && (
+                <p>{weather.current.temp_c}</p>
+              )}
           </div>
           <div className="border mt-10 rounded-lg bg-gray-800">
             {articles.map((element) => {

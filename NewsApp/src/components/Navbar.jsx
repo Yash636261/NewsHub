@@ -19,7 +19,7 @@ const navbar= ()=> {
       <div className="w-full text-sm font-bold mx-auto" id="navbarSupportedContent">
         <ul className="flex mx-2 border-0 p-2 rounded-lg drop-shadow-lg backdrop-blur-sm">
           <li className="mr-4">
-            <Link className="text-black hover:text-gray-500" aria-current="page" to="/general">Home</Link>
+            <Link className="text-black hover:text-gray-500" aria-current="page" to="/">Home</Link>
           </li>
           <li className="mr-4"><Link className="text-balck hover:text-gray-500" to="/entertainment">Entertainment</Link></li>
           <li className="mr-4"><Link className="text-balck hover:text-gray-500" to="/general">General</Link></li>

@@ -33,8 +33,11 @@ const NewsSec = (props)=> {
 
     return (
       <>      
-        <div className="my-3">
-        <h1 className="text-center font-bold text-4xl" style={{ marginTop:'90px' }}>latest from {props.category}</h1>
+        <div className="my-3 ">
+          <div className="flex flex-row mt-14">
+            <img className="bg-blue-800 w-14 h-14 rounded-full" src={props.CategoryImage} alt="" />
+            <h1 className="text-left font-bold text-2xl ml-5 my-auto capitalize">{props.category}</h1>
+          </div>
         <InfiniteScroll
           dataLength={articles.length}
           next={fetchMore}

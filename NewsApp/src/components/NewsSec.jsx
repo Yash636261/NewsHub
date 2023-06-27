@@ -53,14 +53,19 @@ const NewsSec = (props)=> {
           next={fetchMore}
           hasMore={articles.length !== totalResults}
         >
-            <div className="m-auto max-w-3xl ">
-              
-          <div className="flex flex-row mt-14">
-            <img className="bg-blue-800 w-14 h-14 rounded-full" src={props.CategoryImage} alt="" />
-            <h1 className="text-left font-medium text-2xl ml-5 my-auto capitalize">{props.category}</h1>
-              {props.ishome==='yes' && weather.current && (
-                <p>{weather.current.temp_c}</p>
-              )}
+        <div className="m-auto max-w-3xl ">
+          <div className="flex flex-row justify-between mt-14">    
+            <div className="flex flex-row ">
+              <img className="bg-blue-800 w-14 h-14 rounded-full" src={props.CategoryImage} alt="" />
+              <h1 className="text-left font-medium text-2xl ml-5 my-auto capitalize">{props.category}</h1>
+
+            </div>
+            {props.ishome==='yes' && weather.current && (
+                  <div className=" border border-gray-500 bg-gray-800 text-white rounded-2xl p-2 ">
+                    <p className="text-sm">{weather.location.name}</p>
+                    <p className="text-3xl">{weather.current.temp_c}°C</p>
+                  </div>
+            )}
           </div>
           <div className="border mt-10 rounded-lg bg-gray-800">
             {articles.map((element) => {
@@ -76,7 +81,7 @@ const NewsSec = (props)=> {
               );
             })}
           </div>
-            </div>
+        </div>
         </InfiniteScroll>
       </div>
       </>

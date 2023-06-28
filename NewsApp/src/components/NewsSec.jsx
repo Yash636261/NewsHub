@@ -66,9 +66,12 @@ const NewsSec = (props)=> {
               
             </div>
             {props.ishome==='yes' && weather.current && (
-                  <div className=" border border-transparent bg-[#1f1f1f] text-white rounded-2xl p-2 ">
-                    <p className="text-sm">{weather.location.name}</p>
-                    <p className="text-3xl">{weather.current.temp_c}°C</p>
+                  <div className="flex flex-row border border-transparent bg-[#1f1f1f] text-white rounded-2xl p-2 ">
+                    <img src={weather.current.condition.icon} alt="" />
+                    <div>
+                      <p className="text-sm">{weather.location.name}</p>
+                      <p className="text-3xl">{weather.current.temp_c}°C</p>
+                    </div>
                   </div>
             )}
           </div>

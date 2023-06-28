@@ -3,16 +3,18 @@ import Subnews from "./Subnews";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+
 const NewsSec = (props)=> {
-  
   const [articles, setArticles] = useState([]);
   //const {loading, setLoading} = useState(false);
   const [weather , setWeather] = useState({});
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(1);
 
+
+
   const updateNews= async ()=> {
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${page}&pageSize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${import.meta.env.VITE_NEWS_API}&page=${page}&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     setArticles(parsedData.articles)
@@ -25,7 +27,7 @@ const NewsSec = (props)=> {
   },[])
 
   const fetchWeather = async () =>{
-    const url ='https://api.weatherapi.com/v1/current.json?key=c02fc0d7552741539dc150216232706&q=vadodara&aqi=no'
+    const url =`https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_Weather_api}&q=vadodara&aqi=no`
     try{
       let weatherdata = await fetch(url);
       let data = await weatherdata.json();
@@ -38,7 +40,7 @@ const NewsSec = (props)=> {
 
   const fetchMore = async () => {
     // setPage(page+1)
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=c5ddccd7e12e45a6bcae2b4617dc6570&page=${page +1}&pageSize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${import.meta.env.VITE_NEWS_API}&page=${page +1}&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     setArticles(articles.concat(parsedData.articles))

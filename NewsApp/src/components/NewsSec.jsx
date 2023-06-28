@@ -45,6 +45,8 @@ const NewsSec = (props)=> {
     setTotalResults(parsedData.totalResults)
   };
 
+    const currentDate = new Date();
+
     return (
       <>      
         <div className="my-3">
@@ -57,23 +59,28 @@ const NewsSec = (props)=> {
           <div className="flex flex-row justify-between mt-14">    
             <div className="flex flex-row ">
               <img className="bg-blue-800 w-14 h-14 rounded-full" src={props.CategoryImage} alt="" />
-              <h1 className="text-left font-medium text-2xl ml-5 my-auto capitalize">{props.category}</h1>
-
+              <div className=" ml-5 my-auto ">
+                <h1 className="text-left font-medium text-2xl capitalize text-white">{props.category}</h1>
+                {props.ishome==='yes'&&<p className="text-white">{currentDate.toDateString()}</p>}
+              </div>
+              
             </div>
             {props.ishome==='yes' && weather.current && (
-                  <div className=" border border-gray-500 bg-gray-800 text-white rounded-2xl p-2 ">
+                  <div className=" border border-transparent bg-[#1f1f1f] text-white rounded-2xl p-2 ">
                     <p className="text-sm">{weather.location.name}</p>
                     <p className="text-3xl">{weather.current.temp_c}°C</p>
                   </div>
             )}
           </div>
-          <div className="border mt-10 rounded-lg bg-gray-800">
+          <div className="border border-transparent pt-14 mt-10 rounded-2xl bg-[#1f1f1f]">
             {articles.map((element) => {
+              const maxWords = 20; // Maximum number of words
+              const shortDescription = element.description.split(' ').slice(0, maxWords).join(' ');
               return (
                 <div className="flex justify-center" key={element.url}>
                   <Subnews
                     title={element.title}
-                    description={element.description}
+                    description={shortDescription}
                     imageurl={element.urlToImage}
                     newsurl={element.url}
                   />

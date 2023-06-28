@@ -28,8 +28,8 @@ const NewsSec = (props)=> {
     const url ='https://api.weatherapi.com/v1/current.json?key=c02fc0d7552741539dc150216232706&q=vadodara&aqi=no'
     try{
       let weatherdata = await fetch(url);
-      let gotdata = await weatherdata.json();
-      setWeather(gotdata);
+      let data = await weatherdata.json();
+      setWeather(data);
     }
     catch(error){
       console.error("error",error);

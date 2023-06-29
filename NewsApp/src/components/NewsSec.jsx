@@ -81,7 +81,7 @@ const NewsSec = (props) => {
                 </div>
               </div>
               {props.ishome === "yes" && weather.current && (
-                <div className="flex flex-row border border-transparent bg-[#1f1f1f] text-white rounded-2xl p-2 ">
+                <div className="flex flex-row border object-cover border-transparent bg-[#1f1f1f] text-white rounded-2xl p-2 ">
                   <img src={weather.current.condition.icon} alt="" />
                   <div>
                     <p className="text-sm">{weather.location.name}</p>
@@ -93,10 +93,9 @@ const NewsSec = (props) => {
             <div className="border border-transparent pt-14 mt-10 rounded-2xl bg-[#1f1f1f]">
               {articles.map((element) => {
                 const maxWords = 20; // Maximum number of words
-                const shortDescription =!element.description? element.description:element.description
-                  .split(" ")
-                  .slice(0, maxWords)
-                  .join(" ");
+                const shortDescription = !element.description
+                  ? element.description
+                  : element.description.split(" ").slice(0, maxWords).join(" ");
                 return (
                   <div className="flex justify-center" key={element.url}>
                     <Subnews

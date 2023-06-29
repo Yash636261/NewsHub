@@ -22,7 +22,7 @@ const navbar= ()=> {
             <Link className="text-white hover:text-gray-400" aria-current="page" to="/">Home</Link>
           </li>
           <li className="mr-4"><Link className=" hover:text-gray-400" to="/entertainment">Entertainment</Link></li>
-          <li className="mr-4"><Link className=" hover:text-gray-400" to="/general">General</Link></li>
+          <li className="mr-4"><Link className=" hover:text-gray-400" to="/general">Business</Link></li>
           <li className="mr-4"><Link className=" hover:text-gray-400" to="/health">Health</Link></li>
           <li className="mr-4"><Link className=" hover:text-gray-400" to="/science">Science</Link></li>
           <li className="mr-4"><Link className=" hover:text-gray-400" to="/technology">Technology</Link></li>

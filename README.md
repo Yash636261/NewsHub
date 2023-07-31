@@ -7,6 +7,9 @@
     <h1>React Top News Headlines</h1>
 <p>This project is a React application that displays top news headlines from various news sources. The app fetches data from the <a href="https://newsapi.org/">NewsAPI</a> and displays it in a user-friendly format.</p>
 
+![image](https://github.com/Yash636261/NewsHub/assets/98970491/c377e302-f5ba-4342-8e2b-12d5d46f8c23)
+
+
 <h2>Installation</h2>
 
 <ol>
